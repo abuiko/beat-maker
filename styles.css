@@ -1,13 +1,14 @@
 :root {
-  --kick-pad-color: rgb(124, 203, 255);
-  --snare-pad-color: rgb(255, 192, 203);
-  --hihat-pad-color: rgb(199, 252, 230);
+  --body-background: rgb(38, 40, 43);
+
+  --pad-color: rgb(50, 56, 61);
 
   --kick-pad-dark: rgb(35, 167, 255);
   --snare-pad-dark: rgb(255, 113, 137);
   --hihat-pad-dark: rgb(70, 255, 178);
 
-  --btn-color: rgb(138, 138, 138);
+  --play-btn-color: rgb(50, 56, 61);
+  --mute-btn-color: rgb(50, 56, 61);
   --mute-btn-active: rgb(182, 182, 182);
   --tempo-slider-color: rgb(88, 88, 88);
 }
@@ -19,10 +20,16 @@
 body {
   font-size: 62.5%;
   font-family: sans-serif;
+  background: var(--body-background);
 }
 i,
 svg {
   pointer-events: none;
+}
+.mute {
+  -webkit-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
 }
 
 .kick-pad,
@@ -32,16 +39,12 @@ svg {
   height: 5rem;
   margin: 1rem 0.5rem;
   cursor: pointer;
+  -webkit-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  background: var(--pad-color);
 }
-.kick-pad {
-  background: var(--kick-pad-color);
-}
-.snare-pad {
-  background: var(--snare-pad-color);
-}
-.hihat-pad {
-  background: var(--hihat-pad-color);
-}
+
 .kick-pad.active {
   background: var(--kick-pad-dark);
 }
@@ -80,11 +83,14 @@ svg {
   flex: 1;
   margin: 0rem 2rem;
 }
+.controls h1 {
+  color: white;
+}
 .controls button {
   padding: 1rem;
   border: none;
   color: white;
-  background: var(--btn-color);
+  background: var(--mute-btn-color);
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -97,16 +103,24 @@ svg {
 .play {
   padding: 1rem 2rem;
   font-size: 1.5rem;
-  background: var(--btn-color);
+  background: var(--play-btn-color);
   border: none;
   color: white;
   cursor: pointer;
   margin-top: 3rem;
+  -webkit-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
 }
 select {
+  color: white;
   padding: 1rem;
   font-size: 1rem;
-  background: white;
+  background: var(--pad-color);
+  border: none;
+  -webkit-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 10px 63px 0px rgba(0, 0, 0, 0.75);
 }
 
 .mute.active {
@@ -130,6 +144,7 @@ select {
   font-size: 1.5rem;
   margin: 2rem;
   text-align: center;
+  color: white;
 }
 
 @keyframes playTrack {
