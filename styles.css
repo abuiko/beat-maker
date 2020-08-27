@@ -8,6 +8,7 @@
   --hihat-pad-dark: rgb(70, 255, 178);
 
   --btn-color: rgb(138, 138, 138);
+  --mute-btn-active: rgb(182, 182, 182);
 }
 * {
   box-sizing: border-box;
@@ -106,6 +107,11 @@ select {
   font-size: 1rem;
   background: white;
 }
+
+.mute.active {
+  background: var(--mute-btn-active);
+}
+
 @keyframes playTrack {
   from {
     transform: scale(1);
