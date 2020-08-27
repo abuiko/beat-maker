@@ -16,7 +16,26 @@ class DrumKit {
   repeat() {
     let step = this.index % 8;
     const activeBars = document.querySelectorAll(`.b${step}`);
-    console.log(step);
+    //loop over the pads
+    activeBars.forEach(bar => {
+      bar.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
+      //check if pads are active
+      if (bar.classList.contains("active")) {
+        //check each sound
+        if (bar.classList.contains("kick-pad")) {
+          this.kickAudio.currentTime = 0; //to avoid delays between the active pad and the audio
+          this.kickAudio.play();
+        }
+        if (bar.classList.contains("snare-pad")) {
+          this.snareAudio.currentTime = 0;
+          this.snareAudio.play();
+        }
+        if (bar.classList.contains("hihat-pad")) {
+          this.hihatAudio.currentTime = 0;
+          this.hihatAudio.play();
+        }
+      }
+    });
     this.index++;
   }
   start() {
@@ -31,6 +50,9 @@ const drumKit = new DrumKit();
 
 drumKit.pads.forEach(pad => {
   pad.addEventListener("click", drumKit.activePad); //changes the color of pads onclick
+  pad.addEventListener("animationend", function() {
+    this.style.animation = ""; //removes animation and add it again to create infinite scale
+  });
 });
 
 drumKit.playBtn.addEventListener("click", () => {
