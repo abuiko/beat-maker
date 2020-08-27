@@ -9,6 +9,7 @@ class DrumKit {
     this.hihatAudio = document.querySelector(".hihat-sound");
     this.index = 0;
     this.bpm = 150; //parameter to control speed of bits
+    this.isPlaying = null;
   }
   activePad() {
     this.classList.toggle("active"); //changes the color of pad onclick
@@ -40,9 +41,19 @@ class DrumKit {
   }
   start() {
     const interval = (60 / this.bpm) * 1000;
-    setInterval(() => {
-      this.repeat();
-    }, interval);
+    //check if it's playing
+    if (!this.isPlaying) {
+      this.isPlaying = setInterval(() => {
+        this.repeat();
+      }, interval);
+      this.playBtn.innerText = "Pause";
+    } else {
+      //clear interval
+      clearInterval(this.isPlaying);
+
+      this.isPlaying = null;
+      this.playBtn.innerText = "Play";
+    }
   }
 }
 
